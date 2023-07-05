@@ -1,15 +1,15 @@
 <template>
-  <div class="container flex justify-center items-center flex-col my-20">
+  <div class="container flex justify-center items-center flex-col debug gap-4">
     <div
-      class="alert alert-info rounded-lg my-5 flex justify-center items-center h-full"
+      class="gap-5 border w-full rounded-lg flex justify-center items-center py-2 h-full"
     >
-      <img src="/logo.svg" alt="" width="50" />
-      <h2 class="text-white text-xl font-semibold">Pinia Tuto</h2>
+      <img src="/logo.svg" alt="" width="40" />
+      <h2 class="text-2xl font-light">Pinia project</h2>
     </div>
-    <div class="flex w-full justify-center items-center my-4 gap-4 h-full">
+    <div class="flex w-full justify-center items-center gap-4 h-full">
       <input
         type="text"
-        class="input bg-transparent input-lg flex-1 text-black input-bordered input-warning"
+        class="input bg-transparent input-lg flex-1 input-bordered input-warning"
         v-model="newTodo"
       />
       <button
@@ -19,33 +19,34 @@
             newTodo = '';
           }
         "
-        class="btn btn-warning text-black h-[4rem] w-[8rem]"
+        class="btn btn-primary h-[4rem] w-[8rem]"
       >
-        <div >Add Todos</div>
+        <div>Add Todos</div>
       </button>
     </div>
-    <div class="flex flex-col gap-2 w-full">
-      <div
-        v-for="todo in todos"
-        :key="todo.id"
-        class="flex justify-center items-center gap-4"
-      >
-        <div  v-if="!todo.isFinished" class="border flex-1 border-[#5AD16A] py-4 pl-2 rounded-md">
-          <span class="text-black text-xl">{{ todo.value }}</span>
+    <div class="flex flex-col gap-4 w-full">
+      <template v-for="todo in todos" :key="todo.id">
+            
+        <div class="flex justify-center items-center gap-4" v-if="!todo.isFinished">
+          <div
+            class="border flex-1 border-[#5AD16A] py-4 pl-2 rounded-md"
+          >
+            <span class="text-xl">{{ todo.value }}</span>
+          </div>
+          <button
+            v-if="!todo.isFinished"
+            @click="
+              () => {
+                toggleTodoStatus(todo.id);
+                newTodo = '';
+              }
+            "
+            class="btn py-6 h-[4rem] w-[8rem]"
+          >
+            <div class="">Done</div>
+          </button>
         </div>
-        <button
-          v-if="!todo.isFinished"
-          @click="
-            () => {
-              toggleTodoStatus(todo.id);
-              newTodo = '';
-            }
-          "
-          class="btn bg-[#5AD16A] text-black py-6 h-[4rem] w-[8rem]"
-        >
-          <div class="">Done</div>
-        </button>
-      </div>
+      </template>
     </div>
   </div>
 </template>

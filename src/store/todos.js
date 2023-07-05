@@ -33,7 +33,7 @@ export const useTodosStore = defineStore({
 
     toggleTodoStatus(id) {
       const todo = this.todos.find((todo) => todo.id === id);
-      todo.isFinished = !todo.isFinished;
+      todo.isFinished = true;
     },
   },
 });
