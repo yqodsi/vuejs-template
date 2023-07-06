@@ -1,5 +1,5 @@
 <template>
-  <Header/>
+  <Header />
   <div class="container flex justify-center items-center flex-col gap-4">
     <div
       class="gap-5 border w-full rounded-lg flex justify-center items-center py-2 h-full"
@@ -26,7 +26,7 @@
       </button>
     </div>
     <div class="flex flex-col gap-4 w-full">
-      <template v-for="todo in todos" :key="todo.id">
+      <template v-for="todo in reversedTodos" :key="todo.id">
         <div
           class="flex justify-center items-center gap-4"
           v-if="!todo.isFinished"
@@ -53,7 +53,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useTodosStore } from "./store/todos";
 import { storeToRefs } from "pinia";
 import Header from "./views/Header.vue";
@@ -62,6 +62,9 @@ const todoStore = useTodosStore();
 
 const { todos } = storeToRefs(todoStore);
 const { addTodo, toggleTodoStatus } = todoStore;
+// reverse todos array
+
+const reversedTodos = computed(() => todos.value.slice().reverse());
 </script>
 
 <style>

@@ -39,7 +39,10 @@ export default {
       },
       "dark",
       "light",
-      "cupcake"
+      "cupcake",
+      "winter",
+      "bumblebee",
+      "forest"
     ],
   },
   plugins: [
