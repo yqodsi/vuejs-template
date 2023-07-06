@@ -1,5 +1,6 @@
 <template>
-  <div class="container flex justify-center items-center flex-col debug gap-4">
+  <Header/>
+  <div class="container flex justify-center items-center flex-col gap-4">
     <div
       class="gap-5 border w-full rounded-lg flex justify-center items-center py-2 h-full"
     >
@@ -26,11 +27,11 @@
     </div>
     <div class="flex flex-col gap-4 w-full">
       <template v-for="todo in todos" :key="todo.id">
-            
-        <div class="flex justify-center items-center gap-4" v-if="!todo.isFinished">
-          <div
-            class="border flex-1 border-[#5AD16A] py-4 pl-2 rounded-md"
-          >
+        <div
+          class="flex justify-center items-center gap-4"
+          v-if="!todo.isFinished"
+        >
+          <div class="border flex-1 border-[#5AD16A] py-4 pl-2 rounded-md">
             <span class="text-xl">{{ todo.value }}</span>
           </div>
           <button
@@ -55,6 +56,7 @@
 import { ref } from "vue";
 import { useTodosStore } from "./store/todos";
 import { storeToRefs } from "pinia";
+import Header from "./views/Header.vue";
 const newTodo = ref("");
 const todoStore = useTodosStore();
 
